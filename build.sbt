@@ -7,7 +7,8 @@ lazy val akkaDependencies = Seq(
 )
 
 lazy val testDependencies = Seq(
-  scalaTest % Test
+  scalaTest % Test,
+  "com.typesafe.akka" %% "akka-http-testkit" % "10.1.3" % Test
 )
 
 lazy val root = (project in file(".")).
