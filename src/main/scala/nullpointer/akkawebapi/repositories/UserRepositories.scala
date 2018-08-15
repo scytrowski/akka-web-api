@@ -9,7 +9,7 @@ import scala.collection.concurrent.TrieMap
 import scala.concurrent.{ExecutionContext, Future}
 
 object UserRepositories {
-  type UserRepository = Repository[User]
+  type UserRepository = RestRepository[User]
 
   class MapBackedUserRepository(implicit ec: ExecutionContext) extends UserRepository {
     private val keyCounter: AtomicLong = new AtomicLong(0)

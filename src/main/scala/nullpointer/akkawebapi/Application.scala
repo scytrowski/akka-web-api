@@ -4,10 +4,10 @@ import java.util.concurrent.Executors
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
-import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
-import nullpointer.akkawebapi.repositories.UserRepositories.{MapBackedUserRepository, UserRepository}
+import nullpointer.akkawebapi.repositories.UserRepositories.MapBackedUserRepository
 import nullpointer.akkawebapi.routes.{HelloWorldRoute, UserRoute}
 
 import scala.concurrent.ExecutionContext
