@@ -1,8 +1,10 @@
 package nullpointer.akkawebapi.repositories
 
+import nullpointer.akkawebapi.exceptions.RepositoryExceptions.AbsentIdRepositoryException
+import nullpointer.akkawebapi.models.Entities.{Entity, RestEntity}
+
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
-
 import scala.concurrent.ExecutionContext.Implicits.global
 
 class MapBackedRestRepositorySpec extends RepositorySpec {
@@ -49,6 +51,12 @@ class MapBackedRestRepositorySpec extends RepositorySpec {
       await(repository.deleteById(addedDataId))
       val dataFromRepository = await(repository.getById(addedDataId))
       dataFromRepository.isEmpty mustBe true
+    }
+
+    it("must throw AbsentIdRepositoryException when id is absent on update") {
+      val repository: MapBackedRestRepository[TestClass] = new MapBackedRestRepository
+      val entityWithAbsentKey: RestEntity[TestClass] = Entity(None, TestClass("some test data"))
+      an[AbsentIdRepositoryException] mustBe thrownBy (await(repository.update(entityWithAbsentKey)))
     }
   }
 }

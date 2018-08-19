@@ -2,6 +2,7 @@ package nullpointer.akkawebapi.repositories
 
 import java.util.concurrent.atomic.AtomicLong
 
+import nullpointer.akkawebapi.exceptions.RepositoryExceptions.AbsentIdRepositoryException
 import nullpointer.akkawebapi.models.Entities.Entity
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
 
@@ -18,16 +19,14 @@ class MapBackedRestRepository[D](implicit ec: ExecutionContext) extends RestRepo
 
   override def add(data: D): Future[RepositoryEntity] = Future {
     val dataId = idCounter.incrementAndGet()
-    items.putIfAbsent(dataId, data) match {
-      case Some(_) => null
-      case None => Entity(Some(dataId), data)
-    }
+    items.put(dataId, data)
+    Entity(Some(dataId), data)
   }
 
   override def update(entity: RepositoryEntity): Future[Unit] = Future {
     entity.id match {
       case Some(id) => items.put(id, entity.data)
-      case None =>
+      case None => throw AbsentIdRepositoryException("Cannot update entity with absent id")
     }
   }
 
