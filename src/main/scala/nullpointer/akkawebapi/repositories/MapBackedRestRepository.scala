@@ -3,7 +3,7 @@ package nullpointer.akkawebapi.repositories
 import java.util.concurrent.atomic.AtomicLong
 
 import nullpointer.akkawebapi.exceptions.RepositoryExceptions.AbsentIdRepositoryException
-import nullpointer.akkawebapi.models.Entities.Entity
+import nullpointer.akkawebapi.Entities.Entity
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
 
 import scala.collection.concurrent.TrieMap

@@ -1,6 +1,6 @@
 package nullpointer.akkawebapi.json
 
-import nullpointer.akkawebapi.models.Entities.Entity
+import nullpointer.akkawebapi.Entities.Entity
 import spray.json._
 
 case class EntityJsonFormat[I, D](implicit idFormat: JsonFormat[I], dataFormat: JsonFormat[D]) extends RootJsonFormat[Entity[I, D]] {

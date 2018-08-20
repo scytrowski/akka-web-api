@@ -1,4 +1,4 @@
-package nullpointer.akkawebapi.models
+package nullpointer.akkawebapi
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import spray.json.{DefaultJsonProtocol, RootJsonFormat}

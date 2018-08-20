@@ -1,6 +1,6 @@
 package nullpointer.akkawebapi.repositories
 
-import nullpointer.akkawebapi.models.Entities.Entity
+import nullpointer.akkawebapi.Entities.Entity
 
 import scala.concurrent.Future
 

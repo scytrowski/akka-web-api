@@ -1,7 +1,7 @@
 package nullpointer.akkawebapi.repositories
 
 import nullpointer.akkawebapi.exceptions.RepositoryExceptions.AbsentIdRepositoryException
-import nullpointer.akkawebapi.models.Entities.{Entity, RestEntity}
+import nullpointer.akkawebapi.Entities.{Entity, RestEntity}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._

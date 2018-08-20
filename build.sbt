@@ -7,6 +7,10 @@ lazy val akkaDependencies = Seq(
   "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.3"
 )
 
+lazy val jodaDependencies = Seq(
+  "joda-time" % "joda-time" % "2.10"
+)
+
 lazy val testDependencies = Seq(
   scalaTest % Test,
   "com.typesafe.akka" %% "akka-http-testkit" % "10.1.3" % Test
@@ -20,5 +24,5 @@ lazy val root = (project in file(".")).
       version      := "0.1.0-SNAPSHOT"
     )),
     name := "akka-web-api",
-    libraryDependencies ++= akkaDependencies ++ testDependencies
+    libraryDependencies ++= akkaDependencies ++ jodaDependencies ++ testDependencies
   )

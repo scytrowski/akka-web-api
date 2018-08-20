@@ -1,6 +1,6 @@
 package nullpointer.akkawebapi.json
 
-import nullpointer.akkawebapi.models.Entities.Entity
+import nullpointer.akkawebapi.Entities.Entity
 import org.scalatest.{FunSpec, MustMatchers}
 import spray.json._
 

@@ -1,4 +1,4 @@
-package nullpointer.akkawebapi.models
+package nullpointer.akkawebapi
 
 object Entities {
   case class Entity[I, D](id: Option[I], data: D) {

@@ -3,8 +3,8 @@ package nullpointer.akkawebapi.routes
 import akka.http.scaladsl.model.{ContentTypes, StatusCodes}
 import akka.http.scaladsl.server.Route
 import nullpointer.akkawebapi.json.EntityJsonFormat.RestEntityJsonFormat
-import nullpointer.akkawebapi.models.Entities.{Entity, RestEntity}
-import nullpointer.akkawebapi.models.ErrorResponses.{ErrorResponse, ErrorResponseJsonSupport}
+import nullpointer.akkawebapi.Entities.{Entity, RestEntity}
+import nullpointer.akkawebapi.ErrorResponses.{ErrorResponse, ErrorResponseJsonSupport}
 import nullpointer.akkawebapi.repositories.MapBackedRestRepository
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
 import spray.json._
