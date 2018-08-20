@@ -2,8 +2,8 @@ package nullpointer.akkawebapi.routes
 
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Route
+import nullpointer.akkawebapi.json.EntityJsonFormat.RestEntityJsonFormat
 import nullpointer.akkawebapi.models.Entities.RestEntity
-import nullpointer.akkawebapi.models.EntityJsonFormat.RestEntityJsonFormat
 import nullpointer.akkawebapi.models.ErrorResponses.ErrorResponse
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
 import spray.json._

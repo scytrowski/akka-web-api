@@ -8,7 +8,7 @@ import nullpointer.akkawebapi.routes.RestRoute
 import scala.concurrent.ExecutionContext
 
 class WebServer(implicit ec: ExecutionContext) extends HttpApp {
-  import nullpointer.akkawebapi.models.ModelJsonFormats._
+  import nullpointer.akkawebapi.json.ModelJsonFormats._
 
   override protected def routes: Route = RestRoute[User](new MapBackedRestRepository[User](), "user")
 }

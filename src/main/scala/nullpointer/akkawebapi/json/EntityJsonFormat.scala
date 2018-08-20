@@ -1,4 +1,4 @@
-package nullpointer.akkawebapi.models
+package nullpointer.akkawebapi.json
 
 import nullpointer.akkawebapi.models.Entities.Entity
 import spray.json._

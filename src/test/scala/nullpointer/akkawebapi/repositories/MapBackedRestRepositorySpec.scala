@@ -10,7 +10,7 @@ import scala.concurrent.{Await, Future}
 class MapBackedRestRepositorySpec extends RepositorySpec {
   import MapBackedRestRepositorySpec._
 
-  describe("A map backed repository") {
+  describe("A MapBackedRepository") {
     it("must return correct items from repository") {
       val repository: MapBackedRestRepository[TestClass] = new MapBackedRestRepository
       val items = Seq(
