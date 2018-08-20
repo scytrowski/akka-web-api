@@ -1,9 +1,9 @@
 package nullpointer.akkawebapi.routes
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.{ContentTypes, StatusCodes}
 import akka.http.scaladsl.server.Route
-import nullpointer.akkawebapi.models.Entities.{Entity, EntityJsonFormat, RestEntity}
+import nullpointer.akkawebapi.models.Entities.{Entity, RestEntity}
+import nullpointer.akkawebapi.models.EntityJsonFormat.RestEntityJsonFormat
 import nullpointer.akkawebapi.models.ErrorResponses.{ErrorResponse, ErrorResponseJsonSupport}
 import nullpointer.akkawebapi.repositories.MapBackedRestRepository
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
@@ -13,11 +13,10 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
 import scala.util.Random
 
-class RestRouteSpec extends RouteSpec with SprayJsonSupport with DefaultJsonProtocol with BasicFormats with ErrorResponseJsonSupport {
+class RestRouteSpec extends RouteSpec with ErrorResponseJsonSupport {
   import RestRouteSpec._
 
-  private implicit val testClassFormat: RootJsonFormat[TestClass] = jsonFormat1(TestClass)
-  private implicit val entityFormat: RootJsonFormat[RestEntity[TestClass]] = EntityJsonFormat[Long, TestClass]
+  private implicit val entityFormat: RootJsonFormat[RestEntity[TestClass]] = RestEntityJsonFormat[TestClass]
 
   private val items: Seq[TestClass] = Seq(
     TestClass("first item data"),
@@ -202,8 +201,10 @@ class RestRouteSpec extends RouteSpec with SprayJsonSupport with DefaultJsonProt
   }
 }
 
-object RestRouteSpec {
+object RestRouteSpec extends DefaultJsonProtocol {
   def await[T](future: Future[T]): T = Await.result(future, 5 seconds)
 
   case class TestClass(data: String)
+
+  lazy implicit val testClassFormat: RootJsonFormat[TestClass] = jsonFormat1(TestClass)
 }

@@ -1,9 +1,9 @@
 package nullpointer.akkawebapi.routes
 
-import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Route
-import nullpointer.akkawebapi.models.Entities.{EntityJsonFormat, RestEntity}
+import nullpointer.akkawebapi.models.Entities.RestEntity
+import nullpointer.akkawebapi.models.EntityJsonFormat.RestEntityJsonFormat
 import nullpointer.akkawebapi.models.ErrorResponses.ErrorResponse
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
 import spray.json._
@@ -11,9 +11,9 @@ import spray.json._
 import scala.reflect.ClassTag
 import scala.util.{Failure, Success}
 
-case class RestRoute[D](repository: RestRepository[D], pathPrefix: String)(implicit classTag: ClassTag[D], dataFormat: RootJsonFormat[D]) extends CustomRoute with BasicFormats with SprayJsonSupport {
+case class RestRoute[D](repository: RestRepository[D], pathPrefix: String)(implicit classTag: ClassTag[D], dataFormat: RootJsonFormat[D]) extends CustomRoute {
   private val className = classTag.runtimeClass.getSimpleName
-  private implicit val entityFormat: RootJsonFormat[RestEntity[D]] = EntityJsonFormat[Long, D]
+  private implicit val entityFormat: RootJsonFormat[RestEntity[D]] = RestEntityJsonFormat[D]
 
   override def definition: Route = pathPrefix(pathPrefix) {
     pathSuffix(LongNumber) { id =>

@@ -3,9 +3,9 @@ package nullpointer.akkawebapi.repositories
 import nullpointer.akkawebapi.exceptions.RepositoryExceptions.AbsentIdRepositoryException
 import nullpointer.akkawebapi.models.Entities.{Entity, RestEntity}
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future}
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class MapBackedRestRepositorySpec extends RepositorySpec {
   import MapBackedRestRepositorySpec._
