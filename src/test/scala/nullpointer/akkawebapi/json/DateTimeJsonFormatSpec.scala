@@ -4,7 +4,7 @@ import org.joda.time.DateTime
 import org.scalatest.{FunSpec, MustMatchers}
 import spray.json.{BasicFormats, JsNumber, JsObject}
 
-class DateTimeJsonFormatSpec extends FunSpec with MustMatchers with BasicFormats {
+class DateTimeJsonFormatSpec extends JsonFormatSpec {
   describe("A DateTimeJsonFormat") {
     it("must write correct year value") {
       val format = DateTimeJsonFormat()
@@ -16,7 +16,7 @@ class DateTimeJsonFormatSpec extends FunSpec with MustMatchers with BasicFormats
       year.get mustBe expectedYear
     }
 
-    it("must write correct month value") {
+    it("must write correct month of year value") {
       val format = DateTimeJsonFormat()
       val expectedMonthOfYear = 10
       val dateTime = new DateTime(2015, expectedMonthOfYear, 25, 19, 25, 38, 150)

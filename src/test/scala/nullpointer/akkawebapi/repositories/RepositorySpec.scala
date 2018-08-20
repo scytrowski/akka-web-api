@@ -1,5 +1,5 @@
 package nullpointer.akkawebapi.repositories
 
-import org.scalatest.{FunSpec, MustMatchers}
+import nullpointer.akkawebapi.CommonSpec
 
-trait RepositorySpec extends FunSpec with MustMatchers
+trait RepositorySpec extends CommonSpec

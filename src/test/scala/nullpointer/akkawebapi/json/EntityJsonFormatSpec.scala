@@ -4,7 +4,7 @@ import nullpointer.akkawebapi.Entities.Entity
 import org.scalatest.{FunSpec, MustMatchers}
 import spray.json._
 
-class EntityJsonFormatSpec extends FunSpec with MustMatchers {
+class EntityJsonFormatSpec extends JsonFormatSpec {
   import EntityJsonFormatSpec._
 
   describe("An EntityJsonFormat") {
