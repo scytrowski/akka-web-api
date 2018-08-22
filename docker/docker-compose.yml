@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+   mariadb:
+      container_name: "mariadb"
+      image: "mariadb"
+      ports:
+         - "3306:3306"
+      environment:
+         - MYSQL_ROOT_PASSWORD=root
+      networks:
+         my_network:
+            ipv4_address: 172.20.1.1
+
+networks:
+   my_network:
+      ipam:
+         driver: default
+         config:
+            - subnet: 172.20.0.0/16
