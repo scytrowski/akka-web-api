@@ -6,6 +6,8 @@ services:
       image: "mariadb"
       ports:
          - "3306:3306"
+      volumes:
+         - "./mariadb:/docker-entrypoint-initdb.d"
       environment:
          - MYSQL_ROOT_PASSWORD=root
       networks:
