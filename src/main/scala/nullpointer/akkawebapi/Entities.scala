@@ -5,6 +5,12 @@ object Entities {
     def withId(id: I): Entity[I, D] = copy(id = Some(id))
   }
 
+  object Entity {
+    def apply[I, D](id: I, data: D): Entity[I, D] = Entity(Some(id), data)
+
+    def apply[I, D](data: D): Entity[I, D] = Entity(None, data)
+  }
+
   type RestEntity[D] = Entity[Long, D]
 
   object RestEntity {
