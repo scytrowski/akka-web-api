@@ -17,10 +17,12 @@ object Tables extends DatabaseConfiguration {
   abstract class RestEntityTable[D](tag: Tag, tableName: String)(implicit dataType: TypedType[D]) extends Table[RestEntity[D]](tag, tableName) {
     val id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
-    def * : ProvenShape[RestEntity[D]] = (id :: dataShape :: HNil) <>[RestEntity[D]] (
-      x => RestEntity[D](x.head, x.tail.head),
-      (x: RestEntity[D]) => x.id.map(id => id :: x.data :: HNil)
-    )
+    def * : ProvenShape[RestEntity[D]] =
+      (id :: dataShape :: HNil) <>[RestEntity[D]]
+        (
+          x => RestEntity[D](x.head, x.tail.head),
+          (x: RestEntity[D]) => x.id.map(id => id :: x.data :: HNil)
+        )
 
     protected def dataShape: ProvenShape[D]
   }
