@@ -11,7 +11,7 @@ import scala.concurrent.{ExecutionContext, Future}
 object SlickBackedRestRepository extends DatabaseConfiguration {
   import config.profile.api._
 
-  class SlickBackedRestRepository[D, T <: RestEntityTable[D]](database: Database)(implicit ec: ExecutionContext, query: TableQuery[T]) extends RestRepository[D] {
+  class SlickBackedRestRepository[D](database: Database)(implicit ec: ExecutionContext, query: TableQuery[_ <: RestEntityTable[D]]) extends RestRepository[D] {
 
     override def getById(id: Long): Future[Option[RepositoryEntity]] = database.run(query.filter(_.id === id).result.headOption)
 

@@ -21,7 +21,7 @@ class SlickBackedRestRepositorySpec extends RepositorySpec {
 
   describe("A SlickBackedRestRepository") {
     it("must return correct items from repository") {
-      val repository: SlickBackedRestRepository[TestClass, TestClassTable] = createRepository
+      val repository = createRepository
       val items = Seq(
         TestClass("first item data"),
         TestClass("second item data"),
@@ -33,7 +33,7 @@ class SlickBackedRestRepositorySpec extends RepositorySpec {
     }
 
     it("must have added item") {
-      val repository: SlickBackedRestRepository[TestClass, TestClassTable] = createRepository
+      val repository = createRepository
       val data = TestClass("some data")
       val addedData = await(repository.add(data))
       val dataFromRepository = await(repository.getById(addedData.id.get))
@@ -42,7 +42,7 @@ class SlickBackedRestRepositorySpec extends RepositorySpec {
     }
 
     it("must have updated item") {
-      val repository: SlickBackedRestRepository[TestClass, TestClassTable] = createRepository
+      val repository = createRepository
       val data = TestClass("some data")
       val addedData = await(repository.add(data))
       val updatedData = addedData.copy(data = TestClass("some another data"))
@@ -53,7 +53,7 @@ class SlickBackedRestRepositorySpec extends RepositorySpec {
     }
 
     it("must not have deleted item") {
-      val repository: SlickBackedRestRepository[TestClass, TestClassTable] = createRepository
+      val repository = createRepository
       val data = TestClass("some data")
       val addedData = await(repository.add(data))
       val addedDataId = addedData.id.get
@@ -63,7 +63,7 @@ class SlickBackedRestRepositorySpec extends RepositorySpec {
     }
 
     it("must throw AbsentIdRepositoryException when id is absent on update") {
-      val repository: SlickBackedRestRepository[TestClass, TestClassTable] = createRepository
+      val repository = createRepository
       val entityWithAbsentKey: RestEntity[TestClass] = Entity(None, TestClass("some test data"))
       an[AbsentIdRepositoryException] mustBe thrownBy (await(repository.update(entityWithAbsentKey)))
     }
@@ -88,7 +88,7 @@ private object SlickBackedRestRepositorySpec extends DatabaseConfiguration {
 
   private lazy val database: Database = Database.forConfig("db")
 
-  def createRepository: SlickBackedRestRepository[TestClass, TestClassTable] = new SlickBackedRestRepository[TestClass, TestClassTable](database)
+  def createRepository: SlickBackedRestRepository[TestClass] = new SlickBackedRestRepository(database)
 
   def initializeDatabase(): Unit = await(database.run(testClassQuery.schema.create))
 
