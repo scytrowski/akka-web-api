@@ -71,9 +71,9 @@ object Tables extends DatabaseConfiguration {
   private implicit def dateTime2timestamp(dateTime: DateTime): Timestamp = new Timestamp(dateTime.getMillis)
   private implicit def dataType[D <: Model](implicit classTag: ClassTag[D]): TypedType[D] = ScalaBaseType[D]
 
-  val users = TableQuery[UserTable]
-  val categories = TableQuery[CategoryTable]
-  val posts = TableQuery[PostTable]
-  val threads = TableQuery[ThreadTable]
-  val threadPosts = TableQuery[ThreadPostTable]
+  implicit val users: TableQuery[UserTable] = TableQuery[UserTable]
+  implicit val categories: TableQuery[CategoryTable] = TableQuery[CategoryTable]
+  implicit val posts: TableQuery[PostTable] = TableQuery[PostTable]
+  implicit val threads: TableQuery[ThreadTable] = TableQuery[ThreadTable]
+  implicit val threadPosts: TableQuery[ThreadPostTable] = TableQuery[ThreadPostTable]
 }
