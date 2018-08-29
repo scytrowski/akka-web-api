@@ -2,7 +2,7 @@ package nullpointer.akkawebapi.repositories
 
 import nullpointer.akkawebapi.Entities.RestEntity
 import nullpointer.akkawebapi.db.DatabaseConfiguration
-import nullpointer.akkawebapi.db.Tables.RestEntityTable
+import nullpointer.akkawebapi.db.ModelTables.RestEntityTable
 import nullpointer.akkawebapi.exceptions.RepositoryExceptions.AbsentIdRepositoryException
 import nullpointer.akkawebapi.repositories.Repositories.RestRepository
 

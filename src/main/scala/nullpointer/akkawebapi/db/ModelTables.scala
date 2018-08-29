@@ -11,7 +11,7 @@ import slick.lifted.ProvenShape
 
 import scala.reflect.ClassTag
 
-object Tables extends DatabaseConfiguration {
+object ModelTables extends DatabaseConfiguration {
   import config.profile.api._
 
   abstract class RestEntityTable[D](tag: Tag, tableName: String)(implicit dataType: TypedType[D]) extends Table[RestEntity[D]](tag, tableName) {

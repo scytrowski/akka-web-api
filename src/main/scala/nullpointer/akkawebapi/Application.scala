@@ -5,7 +5,7 @@ import com.typesafe.config.ConfigFactory
 import nullpointer.akkawebapi.Configurations.ServerConfiguration
 import nullpointer.akkawebapi.Entities.RestEntity
 import nullpointer.akkawebapi.Models.User
-import nullpointer.akkawebapi.db.{DatabaseConfiguration, Tables}
+import nullpointer.akkawebapi.db.{DatabaseConfiguration, ModelTables}
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.concurrent.duration._
@@ -25,8 +25,8 @@ object Application extends App with DatabaseConfiguration {
 
   val db = Database.forConfig("db")
   try {
-    await(db.run(Tables.users.insertOrUpdate(RestEntity[User](1, User("abc", "def")))))
-    db.run(Tables.users.result).foreach(println)
+    await(db.run(ModelTables.users.insertOrUpdate(RestEntity[User](1, User("abc", "def")))))
+    db.run(ModelTables.users.result).foreach(println)
     println("After print!")
   } finally db.close
 }
