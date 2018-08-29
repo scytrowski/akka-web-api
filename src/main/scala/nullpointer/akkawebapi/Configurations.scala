@@ -7,7 +7,7 @@ object Configurations {
 
   object ServerConfiguration {
     def ofConfig(config: Config): ServerConfiguration = {
-      val apiConfig = config.getConfig("api")
+      val apiConfig = config.getConfig("rest")
       val host = apiConfig.getString("host")
       val port = apiConfig.getInt("port")
       val basePath = apiConfig.getString("basePath")

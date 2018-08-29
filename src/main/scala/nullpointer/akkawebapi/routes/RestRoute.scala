@@ -16,21 +16,23 @@ case class RestRoute[D](repository: RestRepository[D], pathPrefix: String)(impli
   private implicit val entityFormat: RootJsonFormat[RestEntity[D]] = RestEntityJsonFormat[D]
 
   override def definition: Route = pathPrefix(pathPrefix) {
-    pathSuffix(LongNumber) { id =>
-      get {
-        onSuccess(repository.getById(id)) {
-          case Some(data) => complete(data)
-          case None => completeWithError(ErrorResponse(404, s"$className with requested id '$id' does not exist"))
-        }
-      } ~
-      delete {
-        onSuccess(repository.deleteById(id)) {
-          case true => complete(StatusCodes.OK)
-          case false => completeWithError(ErrorResponse(404, s"$className with requested id '$id' does not exist"))
+    pathPrefix(LongNumber) { id =>
+      pathEndOrSingleSlash {
+        get {
+          onSuccess(repository.getById(id)) {
+            case Some(data) => complete(data)
+            case None => completeWithError(ErrorResponse(404, s"$className with requested id '$id' does not exist"))
+          }
+        } ~
+        delete {
+          onSuccess(repository.deleteById(id)) {
+            case true => complete(StatusCodes.OK)
+            case false => completeWithError(ErrorResponse(404, s"$className with requested id '$id' does not exist"))
+          }
         }
       }
     } ~
-    pathEnd {
+    pathEndOrSingleSlash {
       get {
         complete(repository.getAll)
       } ~
